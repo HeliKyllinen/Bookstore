@@ -1,16 +1,27 @@
 package K24.Bookstore.domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Book {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	
 	private String title, author, isbn;
-	private int publicationYear, price;
+	private int publicationYear;
+
+	double price;
 	
 	public Book() {
 		super();
 	}
 	
-	public Book(String title, String author, String isbn, int publicationYear, int price) {
+	public Book(String title, String author, String isbn, int publicationYear, double price) {
 		super();
 		this.title = title;
 		this.author = author;
@@ -59,11 +70,11 @@ public class Book {
 		this.publicationYear = publicationYear;
 	}
 
-	public int getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 
