@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Book {
@@ -11,23 +13,37 @@ public class Book {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
-	private String title, author, isbn;
-	private int publicationYear;
 
+	private String title, author, isbn;
+	//@NotEmpty(message = "Book's title cannot be empty!")
+	//@Size(min = 2, max =250)	
+	private int publicationYear;
 	double price;
+	
+	@ManyToOne
+	@JoinColumn(name = "categoryid")
+	private Category category;
 	
 	public Book() {
 		super();
 	}
 	
-	public Book(String title, String author, String isbn, int publicationYear, double price) {
+	public Book(String title, String author, String isbn, int publicationYear, double price, Category category) {
 		super();
 		this.title = title;
 		this.author = author;
 		this.isbn = isbn;
 		this.publicationYear = publicationYear;
 		this.price = price;
+		this.category = category;
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 
 	public long getId() {
@@ -81,7 +97,7 @@ public class Book {
 	@Override
 	public String toString() {
 		return "Book [id=" + id + ", title=" + title + ", author=" + author + ", isbn=" + isbn + ", publicationYear="
-				+ publicationYear + ", price=" + price + "]";
+				+ publicationYear + ", price=" + price + ", category=" + category + "]";
 	}
 
 	
