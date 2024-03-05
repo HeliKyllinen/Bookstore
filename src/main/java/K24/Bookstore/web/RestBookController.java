@@ -38,11 +38,11 @@ public class RestBookController {
 		return bookRepository.findById(bookId);
 	}
 	
-	//@PostMapping("/book")
-	//Book newBook(@RequestBody Book newBook) {
-	//	log.info("save a new book " + newBook);
-	//	return bookRepository.save(newBook);
-	//}	
+	@PostMapping("/book")
+	Book newBook(@RequestBody Book newBook) {
+		log.info("save a new book " + newBook);
+		return bookRepository.save(newBook);
+	}	
 
 	//@PutMapping("/book/{id}")
 	//Book editBook(@RequestBody Book editedBook, @PathVariable Long id) {
