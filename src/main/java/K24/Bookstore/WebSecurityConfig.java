@@ -25,6 +25,9 @@ public class WebSecurityConfig {
 			new AntPathRequestMatcher("/api/books**"),
 			new AntPathRequestMatcher("/h2-console/**") };
 
+	private static final AntPathRequestMatcher[] ADMIN_LIST_URLS = { 
+			new AntPathRequestMatcher("/admin/**")};
+
 	@Bean
 	public SecurityFilterChain configure(HttpSecurity http) throws Exception {
 
@@ -32,6 +35,7 @@ public class WebSecurityConfig {
 				authorize -> authorize
 				.requestMatchers(antMatcher("/css/**")).permitAll()
 				.requestMatchers(WHITE_LIST_URLS).permitAll()
+				.requestMatchers(ADMIN_LIST_URLS ).hasAuthority("ADMIN")
 				.anyRequest().authenticated())
 				.headers(headers -> 
 					headers.frameOptions(frameOptions -> frameOptions 
