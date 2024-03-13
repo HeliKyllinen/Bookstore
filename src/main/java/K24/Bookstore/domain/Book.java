@@ -1,5 +1,6 @@
 package K24.Bookstore.domain;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,7 +17,8 @@ public class Book {
 
 	private String title, author, isbn;
 	//@NotEmpty(message = "Book's title cannot be empty!")
-	//@Size(min = 2, max =250)	
+	//@Size(min = 2, max =250)
+	@Column (name = "publicationyear")
 	private int publicationYear;
 	double price;
 	

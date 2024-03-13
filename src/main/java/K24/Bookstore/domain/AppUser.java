@@ -3,7 +3,7 @@ package K24.Bookstore.domain;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="UserTable")
+@Table(name="appuser")
 public class AppUser {
 
     @Id
@@ -15,7 +15,7 @@ public class AppUser {
     @Column(name = "username", nullable = false, unique = true)
     private String username;
 
-    @Column(name = "password", nullable = false)
+    @Column(name = "passwordhash", nullable = false)
     private String passwordHash;
 
     @Column(name = "email", nullable = false)
